@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from '../layout/Main';
+import Blogs from '../Pages/Blogs/Blogs';
 import Home from '../Pages/Home/Home';
 import Services from '../Pages/Services/Services';
 
@@ -17,6 +18,10 @@ import Services from '../Pages/Services/Services';
                 {
                     path: '/services',
                     element: <Services></Services>
+                },
+                {
+                    path: '/blogs',
+                    element: <Blogs></Blogs>
                 }
             ]
         }
