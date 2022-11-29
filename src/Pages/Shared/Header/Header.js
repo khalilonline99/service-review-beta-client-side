@@ -45,13 +45,23 @@ const Header = () => {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/services'>Services</Link></li>
           <li><Link to='/blogs'>Blogs</Link></li>
+          <li><Link to='/profile'>Profile</Link></li>
+          {
+            user ?
+            <>
+            <li><Link to='/profile'>My Review</Link></li>
+            <li><Link to='/profile'>Add Service</Link></li>
+            </>
+            :
+            <></>
+          }
         </ul>
       </div>
 
       {
         user ?
           <div className="navbar-end">
-            <h2 className='text-sm mr-2'>Hello, {user.email}</h2>
+            <h2 className='text-sm mr-2'>{user.displayName}</h2>
             <button className='btn btn-primary' onClick={handleSignOut} >Logout</button>
           </div>
 

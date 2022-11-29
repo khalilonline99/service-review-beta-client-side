@@ -4,9 +4,11 @@ import Main from '../layout/Main';
 import Blogs from '../Pages/Blogs/Blogs';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import Profile from '../Pages/Profile/Profile';
 import Register from '../Pages/Register/Register';
 import ServiceDetails from '../Pages/Services/ServiceDetails';
 import Services from '../Pages/Services/Services';
+import PrivateRoute from './PrivateRoute';
 
 
     const router = createBrowserRouter([
@@ -38,6 +40,10 @@ import Services from '../Pages/Services/Services';
                 {
                     path: '/register',
                     element: <Register></Register>
+                },
+                {
+                    path: '/profile',
+                    element: <Profile></Profile>
                 }
             ]
         }

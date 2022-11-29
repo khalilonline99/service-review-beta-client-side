@@ -1,12 +1,19 @@
+import { GoogleAuthProvider } from 'firebase/auth';
+import { createBrowserHistory } from 'history';
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, googleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [errorMessage, setErrorMessage] = useState("")
+
+    const from = location.state?.from?.pathname || '/';
+
+    // console.log(from);
 
     const handleUserLogin = (event) => {
         event.preventDefault()
@@ -19,11 +26,37 @@ const Login = () => {
                 const user = result.user;
                 // console.log(user);
                 form.reset();
-                navigate("/");
+                setErrorMessage("");
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error)
                 setErrorMessage(error.message)
+            });
+    }
+
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleLogin = () => {
+        googleLogin(provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.error(errorMessage);
             });
     }
 
@@ -41,12 +74,15 @@ const Login = () => {
 
                     <div>
                         <label className="text-gray-700">Password</label>
-                        <input id="password" type="password" name='password' className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
+                        <input id="password" type="password" name='password' className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder='Password' />
                     </div>
 
 
                     <div className="form-control mt-6 mx-auto">
-                        <input className="btn btn-outline btn-primary" type="submit" value="LOGIN" />
+                        {/* <input className="btn btn-outline btn-primary" type="submit" value="LOGIN" /> */}
+                        <button className="btn btn-outline btn-primary" type="submit">Login</button>
+                        <button className="btn btn-outline btn-primary my-3" onClick={handleGoogleLogin} >Login with Google</button>
+                        {/* <input className="btn btn-outline btn-primary my-3" value="LOGIN with google" onClick={handleGoogleLogin} /> */}
 
                     </div>
 

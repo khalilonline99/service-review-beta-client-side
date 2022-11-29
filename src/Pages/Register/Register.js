@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext)
+    const { user, createUser} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState("")
 
@@ -19,6 +20,8 @@ const Register = () => {
             // Signed in 
             const user = userCredential.user;
             form.reset();
+            user.displayName = name;
+            navigate('/login')
           })
           .catch((error) => {
             const errorCode = error.code;
