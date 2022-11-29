@@ -15,6 +15,7 @@ const ReviewCard = ({ userReview }) => {
                 <p className='font-bold mr-2 w-72 text-left'>{name}:</p>
                 <p className='font-thin text-left'>{review}</p>
             </div>
+            
         </div>
     );
 };
