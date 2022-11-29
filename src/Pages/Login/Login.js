@@ -35,10 +35,12 @@ const Login = () => {
             });
     }
 
-    const provider = new GoogleAuthProvider();
+    
 
-    const handleGoogleLogin = () => {
-        googleLogin(provider)
+    const handleGoogleLogin = (event) => {
+        event.preventDefault();
+        
+        googleLogin()
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -79,34 +81,37 @@ const Login = () => {
 
 
                     <div className="form-control mt-6 mx-auto">
-                        {/* <input className="btn btn-outline btn-primary" type="submit" value="LOGIN" /> */}
-                        <button className="btn btn-outline btn-primary" type="submit">Login</button>
-                        <button className="btn btn-outline btn-primary my-3" onClick={handleGoogleLogin} >Login with Google</button>
-                        {/* <input className="btn btn-outline btn-primary my-3" value="LOGIN with google" onClick={handleGoogleLogin} /> */}
 
+                        <button className="btn btn-outline btn-primary w-44" type="submit">Login</button>
                     </div>
 
-                    {/* Error message show */}
-                    {
-                        errorMessage === "" ?
 
-                            <></>
-                            :
-                            <div className="mx-auto w-3/4 p-0 mt-5">
-                                <div className="alert alert-warning">
-                                    <div>
-                                        <span>{errorMessage}</span>
-                                    </div>
-                                </div>
-                            </div>
-                    }
-
-                    <div className='mt-3'>
-                        <h2>Dont have account? <Link className='link link-info' to='/register'>Register Here</Link></h2>
-                    </div>
                 </div>
 
             </form>
+
+            <div>
+                {/* Error message show */}
+                {
+                    errorMessage === "" ?
+
+                        <></>
+                        :
+                        <div className="mx-auto w-3/4 p-0 mt-5">
+                            <div className="alert alert-warning">
+                                <div>
+                                    <span>{errorMessage}</span>
+                                </div>
+                            </div>
+                        </div>
+                }
+                <form>
+                <button className="btn btn-outline btn-primary my-3" onClick={handleGoogleLogin}>Login with Google</button>
+                </form>
+                <div className='mt-3'>
+                    <h2>Dont have account? <Link className='link link-info' to='/register'>Register Here</Link></h2>
+                </div>
+            </div>
         </section>
     );
 };
