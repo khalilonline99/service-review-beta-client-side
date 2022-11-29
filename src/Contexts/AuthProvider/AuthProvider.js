@@ -49,13 +49,13 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             // console.log(currentUser);
             setUser(currentUser);
-            // console.log(user);
+            console.log(user);
             setLoading(false);
         })
         return () => {
             return unsubscribe()
         }
-    }, [])
+    }, [user])
 
     const authInfo = {
         login,

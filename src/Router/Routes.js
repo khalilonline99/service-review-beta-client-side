@@ -1,9 +1,11 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from '../layout/Main';
+import AddService from '../Pages/AddService/AddService';
 import Blogs from '../Pages/Blogs/Blogs';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import MyReviews from '../Pages/MyReviews/MyReviews';
 import Profile from '../Pages/Profile/Profile';
 import Register from '../Pages/Register/Register';
 import ServiceDetails from '../Pages/Services/ServiceDetails';
@@ -44,6 +46,14 @@ import PrivateRoute from './PrivateRoute';
                 {
                     path: '/profile',
                     element: <Profile></Profile>
+                },
+                {
+                    path: '/myreview',
+                    element: <MyReviews></MyReviews>
+                },
+                {
+                    path: '/addservice',
+                    element: <AddService></AddService>
                 }
             ]
         }

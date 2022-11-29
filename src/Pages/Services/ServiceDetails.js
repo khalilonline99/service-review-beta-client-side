@@ -20,6 +20,7 @@ const ServiceDetails = () => {
         event.preventDefault();
         const form = event.target;
         const name = user.displayName || form.name.value;
+        const serviceName = name;
         const review = form.UserReview.value;
         const serviceId = _id;
         console.log(name);
@@ -28,7 +29,8 @@ const ServiceDetails = () => {
             name: name,
             review: review,
             serviceId: serviceId,
-            email: user?.email
+            email: user?.email,
+            serviceName: serviceName
         }
 
 

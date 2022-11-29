@@ -49,8 +49,8 @@ const Header = () => {
           {
             user ?
             <>
-            <li><Link to='/profile'>My Review</Link></li>
-            <li><Link to='/profile'>Add Service</Link></li>
+            <li><Link to='/myreview'>My Review</Link></li>
+            <li><Link to='/addservice'>Add Service</Link></li>
             </>
             :
             <></>
