@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, Navigate, useLoaderData, useLocation } from 'react-router-dom';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
@@ -31,7 +32,8 @@ const ServiceDetails = () => {
             review: review,
             serviceId: serviceId,
             email: user.email,
-            serviceName: serviceName
+            serviceName: serviceName,
+            date: Date()
         }
 
 
@@ -44,7 +46,7 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.acknowledged) {
                     form.reset()
                     alert('Review added successfully');
@@ -52,18 +54,22 @@ const ServiceDetails = () => {
                 }
             })
             .catch(er => console.error(er));
-            // console.log(reviewData);
+        // console.log(reviewData);
     }
-    
+
 
     // console.log(userReviews);
     function handleClick() {
         forceUpdate();
-      }
+    }
 
 
     return (
         <div className='w-3/4 mx-auto my-16'>
+            <Helmet>
+                <title>Edupro | Home</title>
+            </Helmet>
+
             <h2 className='font-semibold text-4xl tracking-wide text-blue-400'>Service Details of: {name} </h2>
             <div className='mt-8'>
                 <img className='mx-auto my-5' src="https://placehold.co/600x400" alt="" />

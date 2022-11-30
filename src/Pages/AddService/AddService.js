@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const AddService = () => {
@@ -48,6 +49,9 @@ const AddService = () => {
 
     return (
         <div className='mx-auto'>
+            <Helmet>
+                <title>Add Service</title>
+            </Helmet>
             <h3 className='font-bold text-xl text-blue-500 mb-10'>Add your service:</h3>
 
             <form className='bg-blue-200 p-5 w-3/5 rounded mx-auto' onSubmit={handleAddService}>

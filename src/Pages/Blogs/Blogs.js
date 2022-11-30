@@ -1,8 +1,12 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
     return (
         <div className='my-10'>
+            <Helmet>
+                <title>Blogs</title>
+            </Helmet>
             <div className='my-5'>
                 <h1 className='font-bold text-2xl my-5'>Difference between SQL and NoSQL</h1>
                 <div className="overflow-x-auto mx-auto">
@@ -66,7 +70,7 @@ const Blogs = () => {
             <div className='my-5 w-3/5 mx-auto my-3 bg-blue-200 p-5 rounded-xl'>
                 <h1 className='font-bold text-2xl my-5'>How does NodeJS handle multiple requests at the same time?</h1>
                 <p>JavaScript is single threaded. The Node runtime is not. By default, Node only executes one JavaScript instance unless instructed to use more. Node's main JavaScript thread uses an event loop. When multiple requests are made, the first is processed while the rest are blocked (until the first is complete). Each request is processed one loop at a time until they're all processed. The loop executes very quickly  <br />
-                Node introduced worker threads in Node 13. These run on a separate JavaScript thread. In larger scale Node applications, developers tend to create one worker per CPU to maximize parallel processing capacity.</p>
+                    Node introduced worker threads in Node 13. These run on a separate JavaScript thread. In larger scale Node applications, developers tend to create one worker per CPU to maximize parallel processing capacity.</p>
             </div>
 
         </div>

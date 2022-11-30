@@ -48,7 +48,7 @@ import PrivateRoute from './PrivateRoute';
                     element: <Profile></Profile>
                 },
                 {
-                    path: '/myreview',
+                    path: '/myreviews',
                     element: <MyReviews></MyReviews>
                 },
                 {
