@@ -12,7 +12,7 @@ const MyReviews = () => {
         fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
-    }, [user])
+    }, [{user,reviews }])
 
     // console.log(user.email);
     // console.log(reviews);
@@ -37,9 +37,28 @@ const MyReviews = () => {
                 console.log(data);
                 setReviews(data);
                 alert('Review Updated');
+            })
+    }
+
+    const handleReviewDelete = (id) => {
+        const proceed = window.confirm('Are you sure, you want to cancel this review?');
+        if (proceed) {
+            fetch(`http://localhost:5000/myreview/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                }
 
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        alert('deleted successfully');
+                    }
+                })
 
+        }
     }
 
     return (
@@ -54,6 +73,7 @@ const MyReviews = () => {
                             key={reviewAll._id}
                             reviews={reviewAll}
                             handleReviewUpdate={handleReviewUpdate}
+                            handleReviewDelete={handleReviewDelete}
                         ></MyReviewCards>)
                         :
                         <h2 className='font-bold text-xl text-center col-span-3 mt-5'>You have No reviews. Please browse <Link className='link link-info' to='/services' >services</Link> </h2>

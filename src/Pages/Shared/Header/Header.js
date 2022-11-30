@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
@@ -14,6 +14,10 @@ const Header = () => {
       // An error happened.
     });
   }
+
+  useEffect( ()=> {
+
+  } ,[user])
 
   return (
     <div className="navbar bg-base-100">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MyReviewCards = ({ reviews , handleReviewUpdate}) => {
+const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => {
 
     const { review, serviceName, _id } = reviews;
     const [showModal, setShowModal] = React.useState(false);
@@ -14,7 +14,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate}) => {
     
    
 
-    // console.log(reviews._id);
+    console.log(reviews);
 
     return (
 
@@ -23,7 +23,6 @@ const MyReviewCards = ({ reviews , handleReviewUpdate}) => {
                 <h2 className="card-title">{serviceName || "unknown"}</h2>
                 <p className='text-left'>{review}</p>
                 <div className="card-actions justify-end items-center">
-                    {/* <button className='btn btn-success m-2'>Edit</button> */}
 
                     {/* start */}
                     <>
@@ -91,7 +90,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate}) => {
 
                     {/* end */}
 
-                    <button className='btn btn-error m-2'>Delete</button>
+                    <button className='btn btn-error m-2' onClick={()=> handleReviewDelete(_id)}>Delete</button>
                 </div>
             </div>
         </div>

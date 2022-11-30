@@ -3,28 +3,30 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Profile = () => {
     const { user, handleProfile } = useContext(AuthContext);
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const [ignoreIt, forceUpdate] = useReducer(x => x + 1, 0);
+    const [nameOnSite, setNameOnSite] = useState(user?.displayName || "");
 
-    useEffect(() => {
-
-    }, [forceUpdate])
-
-
+    
+    
     const handleUpdateProfile = (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.fullName.value;
         handleProfile(name);
-        // SetChangedUserProfile(name);
-        // console.log(name);
         form.reset();
         alert('Profile updated')
-        forceUpdate()
-
+        setNameOnSite(name);
+        handleClick()
+        
     }
+    
+    function handleClick() {
+        forceUpdate();
+    }
+    
+    useEffect(() => {
 
-
-
+    }, [user]);
 
     return (
         <div className='bg-slate-200 p-10 mt-10'>

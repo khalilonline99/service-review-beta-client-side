@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Link, Navigate, useLoaderData, useLocation } from 'react-router-dom';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
@@ -9,27 +9,28 @@ const ServiceDetails = () => {
     const { _id, name, price, description, image } = serviceDetails[0];
     const [userReviews, setUserReviews] = useState([]);
     const location = useLocation();
+    const [ignoreIt, forceUpdate] = useReducer(x => x + 1, 0);
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews/${_id}`)
             .then(res => res.json())
             .then(data => setUserReviews(data))
-    }, [userReviews]);
+    }, [ignoreIt]);
 
     const handleSubmitReview = (event) => {
         event.preventDefault();
         const form = event.target;
-        const name = user.displayName || form.name.value;
+        const userName = user.displayName;
         const serviceName = name;
         const review = form.UserReview.value;
         const serviceId = _id;
-        console.log(name);
 
         const reviewData = {
-            name: name,
+            userName: userName,
             review: review,
             serviceId: serviceId,
-            email: user?.email,
+            email: user.email,
             serviceName: serviceName
         }
 
@@ -37,7 +38,7 @@ const ServiceDetails = () => {
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
+                'Content-type': 'application/json',
             },
             body: JSON.stringify(reviewData)
         })
@@ -46,18 +47,19 @@ const ServiceDetails = () => {
                 console.log(data)
                 if (data.acknowledged) {
                     form.reset()
-                    alert('Review added successfully')
+                    alert('Review added successfully');
+                    handleClick();
                 }
-                })
+            })
             .catch(er => console.error(er));
-        // console.log(reviewData);
+            // console.log(reviewData);
     }
+    
 
-
-
-
-    // console.log(serviceDetails);
-
+    // console.log(userReviews);
+    function handleClick() {
+        forceUpdate();
+      }
 
 
     return (
@@ -81,7 +83,6 @@ const ServiceDetails = () => {
                 user ?
                     <div>
                         <form className='flex flex-col items-center' onSubmit={handleSubmitReview}>
-                            <textarea className="textarea textarea-bordered w-3/4 h-2 mt-5" name='name' defaultValue={user?.displayName} required></textarea>
                             <textarea className="textarea textarea-bordered w-3/4 mt-5" name='UserReview' placeholder="add your review" required></textarea>
                             <button className="btn btn-accent w-1/4 mt-3" type="submit">Add Review</button>
                         </form>
