@@ -21,25 +21,32 @@ const Home = () => {
 
     return (
         <div>
-            <Helmet>
-                <title>Edupro | Home</title>
-            </Helmet>
+            <div className='relative'>
+                <Helmet>
+                    <title>Edupro | Home</title>
+                </Helmet>
 
-            <Hero></Hero>
-            <div className='my-8 ml-12'>
-                <h1 className='font-bold text-4xl tracking-wide my-4'>Check Out Our Services</h1>
-                <div className='grid grid-cols-3'>
-                    {
-                        servicesHome.map(serviceHome => <ServiceCard
-                            key={serviceHome._id}
-                            service={serviceHome}
-                        ></ServiceCard>)
-                    }
+                <Hero></Hero>
+                <div className='my-12 ml-12 z-10'>
+                    <h1 className='font-bold text-4xl tracking-wide my-4'>Check Out Our Services</h1>
+                    <div className='grid grid-cols-3'>
+                        {
+                            servicesHome.map(serviceHome => <ServiceCard
+                                key={serviceHome._id}
+                                service={serviceHome}
+                            ></ServiceCard>)
+                        }
+                    </div>
+                    <button className="btn btn-primary mt-5"> <Link to='/services'>See All Services</Link> </button>
                 </div>
-                <button className="btn btn-primary mt-5"> <Link to='/services'>See All Services</Link> </button>
+
+                <div className='z-0 mt-5'>
+                    <AboutUs></AboutUs>
+                </div>
+
+                <Reviews></Reviews>
             </div>
-            <AboutUs></AboutUs>
-            <Reviews></Reviews>
+
         </div>
     );
 };
