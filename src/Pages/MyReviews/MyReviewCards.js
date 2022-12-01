@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => {
+const MyReviewCards = ({ reviews, handleReviewUpdate, handleReviewDelete }) => {
 
     const { review, serviceName, _id } = reviews;
     const [showModal, setShowModal] = useState(false);
-    const [reviewId, setReviewId] = useState("")
-
-    // useEffect( () => {
-    //     fetch(`https://visa-service-server.vercel.app/editreview?id=${reviewId}`)
-    //     .then(res => res.json())
-    //     .then(data => console.log(data))
-    // } ,[])
-    
-   
-
-    // console.log(reviews);
 
     return (
 
@@ -40,11 +29,11 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
                                 >
                                     <div className="relative w-full my-6 mx-auto max-w-3xl">
                                         {/*content*/}
-                                        <form onSubmit={() => handleReviewUpdate(_id)} className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                        <form onSubmit={(event) => handleReviewUpdate(_id, event)} className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                             {/*header*/}
                                             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                                                 <h3 className="text-3xl font-semibold">
-                                                {serviceName || "unknown"}
+                                                    {serviceName || "unknown"}
                                                 </h3>
                                                 <button
                                                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -60,7 +49,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
                                                 {/* <p className="my-4 text-slate-500 text-lg leading-relaxed">
                                                 {review}
                                                 </p> */}
-                                                <textarea type="text" name='editedReview' defaultValue={review} className="w-full my-4 text-slate-500 text-md leading-relaxed"/>
+                                                <textarea type="text" name='editedReview' defaultValue={review} className="w-full my-4 text-slate-500 text-md leading-relaxed" />
                                             </div>
                                             {/*footer*/}
                                             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
@@ -73,7 +62,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
                                                 </button>
                                                 <button
                                                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                    type="submit"                                                  
+                                                    type="submit"
                                                 >
                                                     Save Changes
                                                 </button>
@@ -89,7 +78,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
 
                     {/* end */}
 
-                    <button className='btn btn-error m-2' onClick={()=> handleReviewDelete(_id)}>Delete</button>
+                    <button className='btn btn-error m-2' onClick={() => handleReviewDelete(_id)}>Delete</button>
                 </div>
             </div>
         </div>
