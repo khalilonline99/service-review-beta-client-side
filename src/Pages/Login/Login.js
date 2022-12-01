@@ -80,7 +80,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         localStorage.setItem("eduProToken", data.token)
                     })
                 navigate(from, { replace: true });
@@ -90,6 +90,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 const email = error.customData.email;
                 const credential = GoogleAuthProvider.credentialFromError(error);
+                console.error(errorMessage);
             });
     }
 

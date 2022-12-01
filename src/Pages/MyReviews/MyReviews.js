@@ -55,7 +55,7 @@ const MyReviews = () => {
     }
 
     // for deleting the review by user
-    const handleReviewDelete = (id) => {        
+    const handleReviewDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to cancel this review?');
         if (proceed) {
             fetch(`https://visa-service-server.vercel.app/myreview/delete/${id}`, {
@@ -80,6 +80,7 @@ const MyReviews = () => {
     }
 
     function handleClick() {
+        setSpinner(true)
         forceUpdate();
     }
 
@@ -115,7 +116,14 @@ const MyReviews = () => {
                             handleReviewDelete={handleReviewDelete}
                         ></MyReviewCards>)
                         :
-                        <h2 className='font-bold text-xl text-center col-span-3 mt-5'>You have No reviews. You can <Link className='link link-info' to='/services' >services</Link> </h2>
+                        <>
+                            { spinner ?
+                                <></>
+                                :
+                                <h2 className='font-bold text-xl text-center col-span-3 mt-5'>It Seems You have No reviews. You can <Link className='link link-info' to='/services' >services</Link> </h2>
+                            }
+                        </>
+
                 }
             </div>
         </div>
