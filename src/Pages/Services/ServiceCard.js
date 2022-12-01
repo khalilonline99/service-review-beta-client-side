@@ -9,10 +9,10 @@ const ServiceCard = ({ service }) => {
 
             {/* <figure><img src="https://placeimg.com/400/225/arch" alt="services" /></figure> */}
 
-            <figure>
+            <figure className='h-56'>
                 <PhotoProvider>
-                    <PhotoView src="https://placeimg.com/400/225/arch">
-                        <img src="https://placeimg.com/400/225/arch" alt="Edu Pro service review" />
+                    <PhotoView src={image}>
+                        <img src={image} alt="Edu Pro service review" />
                     </PhotoView>
                 </PhotoProvider>
             </figure>

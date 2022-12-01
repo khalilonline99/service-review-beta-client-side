@@ -6,7 +6,7 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const ServiceDetails = () => {
     const serviceDetails = useLoaderData();
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const { _id, name, price, description, image } = serviceDetails[0];
     const [userReviews, setUserReviews] = useState([]);
     const location = useLocation();
@@ -45,10 +45,15 @@ const ServiceDetails = () => {
             },
             body: JSON.stringify(reviewData)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json()
+            })
             .then(data => {
                 // console.log(data)
-                if (data.acknowledged) {
+                if (data?.acknowledged) {
                     form.reset()
                     alert('Review added successfully');
                     handleClick();
@@ -73,7 +78,7 @@ const ServiceDetails = () => {
 
             <h2 className='font-semibold text-4xl tracking-wide text-blue-400'>Service Details of: {name} </h2>
             <div className='mt-8'>
-                <img className='mx-auto my-5' src="https://placehold.co/600x400" alt="" />
+                <img className='mx-auto my-5 h-56' src={image} alt="" />
                 <div>
                     <p className='text-left my-2'> <span className='font-bold'>Name:</span> {name} </p>
                     <p className='text-left my-2'> <span className='font-bold'>Details:</span> {description} </p>

@@ -20,7 +20,8 @@ const AddService = () => {
             image: image,
             price: price,
             description: description,
-            email: user.email
+            email: user.email,
+            date: Date(),
         }
 
         fetch('http://localhost:5000/addservicebyuser', {
@@ -57,19 +58,19 @@ const AddService = () => {
             <form className='bg-blue-200 p-5 w-3/5 rounded mx-auto' onSubmit={handleAddService}>
                 <div className='my-3 flex justify-center'>
                     <label className='mx-2'> Image:</label>
-                    <input type="text" name='image' placeholder='Add service image' />
+                    <input type="text" name='image' placeholder='Add service image' required/>
                 </div>
                 <div className='my-3 flex justify-center'>
                     <label className='mx-2'> Name:</label>
-                    <input type="text" name='name' placeholder='Add service Name' />
+                    <input type="text" name='name' placeholder='Add service Name' required/>
                 </div>
                 <div className='my-3 flex justify-center'>
                     <label className='mx-2'> Price:</label>
-                    <input type="text" name='price' placeholder='Add service price' />
+                    <input type="text" name='price' placeholder='Add service price' required/>
                 </div>
                 <div className='my-3 flex justify-center'>
                     <label className='mx-2'> Details:</label>
-                    <textarea name="details" cols="30" rows="5" placeholder='Add Service details'></textarea>
+                    <textarea name="details" cols="30" rows="5" placeholder='Add Service details' required></textarea>
                 </div>
                 <button className='btn btn-primary' type='submit'>Add Service</button>
             </form>
