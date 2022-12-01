@@ -7,7 +7,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
     const [reviewId, setReviewId] = useState("")
 
     // useEffect( () => {
-    //     fetch(`http://localhost:5000/editreview?id=${reviewId}`)
+    //     fetch(`https://visa-service-server.vercel.app/editreview?id=${reviewId}`)
     //     .then(res => res.json())
     //     .then(data => console.log(data))
     // } ,[])
@@ -40,7 +40,7 @@ const MyReviewCards = ({ reviews , handleReviewUpdate , handleReviewDelete}) => 
                                 >
                                     <div className="relative w-full my-6 mx-auto max-w-3xl">
                                         {/*content*/}
-                                        <form onSubmit={(event) => handleReviewUpdate(_id, event)} className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                        <form onSubmit={() => handleReviewUpdate(_id)} className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                             {/*header*/}
                                             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                                                 <h3 className="text-3xl font-semibold">

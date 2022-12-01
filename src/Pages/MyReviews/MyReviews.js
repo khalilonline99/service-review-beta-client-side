@@ -13,7 +13,7 @@ const MyReviews = () => {
 
     // getting my review with email id
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+        fetch(`https://visa-service-server.vercel.app/myreviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('eduProToken')}`
             }
@@ -28,7 +28,7 @@ const MyReviews = () => {
                 setReviews(data)
                 setSpinner(false)
             })
-    }, [logOut, user?.email])
+    }, [logOut, user?.email, ignoreIt])
 
 
     const handleReviewUpdate = (id, event) => {
@@ -37,7 +37,7 @@ const MyReviews = () => {
         const changedReview = form.editedReview.value
         // console.log(changedReview);
 
-        fetch(`http://localhost:5000/editreview?id=${id}`, {
+        fetch(`https://visa-service-server.vercel.app/editreview?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -55,10 +55,10 @@ const MyReviews = () => {
     }
 
     // for deleting the review by user
-    const handleReviewDelete = (id) => {
+    const handleReviewDelete = (id) => {        
         const proceed = window.confirm('Are you sure, you want to cancel this review?');
         if (proceed) {
-            fetch(`http://localhost:5000/myreview/delete/${id}`, {
+            fetch(`https://visa-service-server.vercel.app/myreview/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-type': 'application/json',

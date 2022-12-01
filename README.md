@@ -1,6 +1,6 @@
 # About this project: 
 
-Live project link: [Edu Pro](https://github.com/facebook/create-react-app).
+Live project link: [Edu Pro](https://visa-service-88849.web.app/).
 
 ## Technologies:
 

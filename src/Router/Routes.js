@@ -29,7 +29,7 @@ import PrivateRoute from './PrivateRoute';
                 {
                     path: '/services/:id',
                     element: <ServiceDetails></ServiceDetails>,
-                    loader: ({params}) => {return fetch(`http://localhost:5000/services/${params.id}`)}
+                    loader: ({params}) => {return fetch(`https://visa-service-server.vercel.app/services/${params.id}`)}
                 },
                 {
                     path: '/blogs',

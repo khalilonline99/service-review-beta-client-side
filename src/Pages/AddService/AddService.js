@@ -24,7 +24,7 @@ const AddService = () => {
             date: Date(),
         }
 
-        fetch('http://localhost:5000/addservicebyuser', {
+        fetch('https://visa-service-server.vercel.app/addservicebyuser', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

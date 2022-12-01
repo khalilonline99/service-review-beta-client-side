@@ -14,7 +14,7 @@ const ServiceDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://visa-service-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => setUserReviews(data))
     }, [ignoreIt]);
@@ -36,7 +36,7 @@ const ServiceDetails = () => {
             date: Date(),
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://visa-service-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('eduProToken')}`,

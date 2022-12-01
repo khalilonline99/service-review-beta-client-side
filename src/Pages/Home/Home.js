@@ -12,7 +12,7 @@ const Home = () => {
     // const [pageTitle] = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://visa-service-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServicesHome(data.servicesHome))
 
@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className='relative'>
+            <div className='relative container'>
                 <Helmet>
                     <title>Edupro | Home</title>
                 </Helmet>
