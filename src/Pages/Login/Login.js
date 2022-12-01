@@ -26,9 +26,26 @@ const Login = () => {
         login(email, password)
             .then((result) => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+                setErrorMessage("");
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("eduProToken", data)
+                    })
+
                 form.reset();
                 setSpinner(false)
-                setErrorMessage("");
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -39,6 +56,8 @@ const Login = () => {
                 }
             });
     }
+
+
     const provider = new GoogleAuthProvider();
     const handleGoogleLogin = (event) => {
         event.preventDefault();

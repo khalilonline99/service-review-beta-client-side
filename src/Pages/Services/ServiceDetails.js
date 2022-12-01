@@ -40,6 +40,7 @@ const ServiceDetails = () => {
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('eduProToken')}`,
                 'Content-type': 'application/json',
             },
             body: JSON.stringify(reviewData)

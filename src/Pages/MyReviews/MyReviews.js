@@ -6,19 +6,29 @@ import MyReviewCards from './MyReviewCards';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [spinner, setSpinner] = useState(true);
     const [ignoreIt, forceUpdate] = useReducer(x => x + 1, 0);
     // console.log(user, reviews);
 
+    // getting my review with email id
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('eduProToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json()
+            })
             .then(data => {
                 setReviews(data)
                 setSpinner(false)
             })
-    }, [reviews])
+    }, [reviews, logOut, user?.email])
 
 
     const handleReviewUpdate = (id, event) => {
@@ -31,6 +41,7 @@ const MyReviews = () => {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('eduProToken')}`,
             },
             body: JSON.stringify({ review: `${changedReview}` })
         })
@@ -51,6 +62,7 @@ const MyReviews = () => {
                 method: 'DELETE',
                 headers: {
                     'Content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('eduProToken')}`,
                 }
 
             })
