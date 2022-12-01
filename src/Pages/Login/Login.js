@@ -31,6 +31,8 @@ const Login = () => {
                 }
                 setErrorMessage("");
 
+                // get jwt token
+
                 fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
@@ -40,8 +42,8 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
-                        localStorage.setItem("eduProToken", data)
+                        // console.log(data);
+                        localStorage.setItem("eduProToken", data.token)
                     })
 
                 form.reset();

@@ -20,7 +20,7 @@ const ServiceCard = ({ service }) => {
             <div className="card-body text-left	z-30">
                 <h2 className="card-title">{name}</h2>
                 <h4>Price: ${price}</h4>
-                <p>{description.slice(0, 70)}</p>
+                <p>{description.slice(0, 70)}.. <Link className='link link-primary' to={`/services/${_id}`}>(read more)</Link></p>
                 <div className="card-actions justify-end">
                     <button className="btn btn-sm"> <Link to={`/services/${_id}`} >View Details</Link> </button>
                 </div>

@@ -33,9 +33,8 @@ const ServiceDetails = () => {
             serviceId: serviceId,
             email: user.email,
             serviceName: serviceName,
-            date: Date()
+            date: Date(),
         }
-
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',

@@ -2,12 +2,12 @@ import React from 'react';
 
 const Reviews = () => {
     return (
-        <div className='my-20 mx-auto'>
-            <h2 className='font-bold text-xl tracking-wide my-4'>What the users say about EduPro</h2>
+        <div className='my-20 mx-auto w-4/5'>
+            <h2 className='font-bold text-4xl tracking-wide my-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-blue-600'>Testimonials</h2>
 
             <div className='grid grid-cols-3'>
                 <div className="card w-96 bg-base-100 shadow-2xl">
-                    <div className="card-body">
+                    <div className="card-body flex flex-cols">
                         <h2 className="text-center font-bold">Hurry Kane</h2>
                         <p>"I got and issue for visa refusal. They simple set a goal for me, and yeah I am now at Canada"</p>
                     </div>

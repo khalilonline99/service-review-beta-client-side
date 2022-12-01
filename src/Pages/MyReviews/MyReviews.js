@@ -19,16 +19,16 @@ const MyReviews = () => {
             }
         })
             .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
+                // if (res.status === 401 || res.status === 403) {
+                //     return logOut();
+                // }
                 return res.json()
             })
             .then(data => {
                 setReviews(data)
                 setSpinner(false)
             })
-    }, [reviews, logOut, user?.email])
+    }, [logOut, user?.email])
 
 
     const handleReviewUpdate = (id, event) => {
@@ -84,11 +84,11 @@ const MyReviews = () => {
     }
 
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto my-12'>
             <Helmet>
                 <title>My Reviews</title>
             </Helmet>
-            <h2 className='text-2xl font-bold text-blue-700'>My reviews:</h2>
+            <h2 className='text-2xl font-bold text-blue-700 my-5'>My Reviews:</h2>
 
             {
                 spinner ?
@@ -103,10 +103,10 @@ const MyReviews = () => {
                     <></>
             }
 
-            <div className='grid grid-cols-3 mx-auto'>
+            <div className='w-4/5 grid grid-cols-3 mx-auto'>
 
                 {
-                    reviews.length > 0 ?
+                    reviews?.length > 0 ?
 
                         reviews.map(reviewAll => <MyReviewCards
                             key={reviewAll._id}
@@ -115,7 +115,7 @@ const MyReviews = () => {
                             handleReviewDelete={handleReviewDelete}
                         ></MyReviewCards>)
                         :
-                        <h2 className='font-bold text-xl text-center col-span-3 mt-5'>You have No reviews. Please browse <Link className='link link-info' to='/services' >services</Link> </h2>
+                        <h2 className='font-bold text-xl text-center col-span-3 mt-5'>You have No reviews. You can <Link className='link link-info' to='/services' >services</Link> </h2>
                 }
             </div>
         </div>

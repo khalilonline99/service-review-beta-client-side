@@ -3,7 +3,7 @@ import ills2 from '../../assets/undraw_team_up_re_84ok.svg'
 
 const AboutUs = () => {
     return (
-        <div className='text-xl my-20 w-3/4 mx-auto z-10 relative mt-36'>
+        <div className='text-xl my-20 w-3/4 mx-auto z-10 relative mt-56 mb-24'>
             <h1 className='font-bold text-4xl tracking-wide my-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-blue-600'>About Us</h1>
             <div className='z-0 absolute bottom-36 right-10 w-1/5'>
                 <div>

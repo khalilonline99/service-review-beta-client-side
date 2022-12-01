@@ -28,7 +28,7 @@ const Home = () => {
 
                 <Hero></Hero>
                 <div className='my-12 ml-12 z-10'>
-                    <h1 className='font-bold text-4xl tracking-wide my-4'>Check Out Our Services</h1>
+                    <h1 className='font-bold text-4xl tracking-wide my-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-blue-600'>Services:</h1>
                     <div className='grid grid-cols-3'>
                         {
                             servicesHome.map(serviceHome => <ServiceCard
@@ -37,10 +37,10 @@ const Home = () => {
                             ></ServiceCard>)
                         }
                     </div>
-                    <button className="btn btn-primary mt-5"> <Link to='/services'>See All Services</Link> </button>
+                    <button className="btn btn-primary btn-outline mt-5"> <Link to='/services'>See All Services</Link> </button>
                 </div>
 
-                <div className='z-0 mt-5'>
+                <div className='z-0 mt-12'>
                     <AboutUs></AboutUs>
                 </div>
 
