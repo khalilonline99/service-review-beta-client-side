@@ -74,7 +74,8 @@ const Header = () => {
 
           :
           <div className="navbar-end">
-            <button className='btn btn-primary'><Link to='/login'>Login</Link></button>
+            <button className='btn btn-primary mx-2'><Link to='/login'>Login</Link></button>
+            <button className='btn btn-primary'><Link to='/register'>Register</Link></button>
           </div>
       }
 
